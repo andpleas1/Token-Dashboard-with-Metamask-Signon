@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import styled from 'styled-components'
-import NavBar from './NavBar'
+import NavBarComponent from './NavBar'
 import CoinList from './CoinList'
-import cc from 'cryptocompare'
+import cc,  { setApiKey }from 'cryptocompare'
 import _ from 'lodash'
 import Search from './Search'
 import {ConfirmButton} from './Button'
@@ -12,9 +12,9 @@ import Dashboard from './Dashboard'
 import moment from 'moment'
 
 const API_KEY = '5818584aaf720be9e9bc6b4ad4d230efec2bb7a7020846727c9575e0e6494a6f'
-// console.log(cc)
-console.log(cc.setApiKey)
-// cc.setApikey(API_KEY)
+setApiKey(API_KEY)
+
+
 const Content = styled.div``
 const AppLayout = styled.div`
 padding:40px;
@@ -55,7 +55,6 @@ class App extends Component {
     ...checkFirstVisit()
   };
   componentDidMount=()=>{
-    this.fetchHistorical()
     this.fetchCoins()
     this.fetchPrice()
   }
@@ -215,7 +214,8 @@ class App extends Component {
   render() {
     return (
       <AppLayout>
-        {NavBar.call(this)}
+        {/* {NavBar.call(this)} */}
+        <NavBarComponent parent= {this} />
         {this.loadingContent() ||
         <Content>
           {this.displayingSettings() && this.settingsContent()}

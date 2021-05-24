@@ -56,12 +56,10 @@ const DeleteIcon = styled.div`
     }
 `
 
-
 export default function(favorites=false){
     console.log(this.state.favorites)
     let coinKeys = favorites ? this.state.favorites:
-    ((this.state.filteredCoins && Object.keys(this.state.filteredCoins)) || (Object.keys(this.state.coinList).slice(0,3)))
-    console.log(coinKeys)
+    ((this.state.filteredCoins && Object.keys(this.state.filteredCoins)) || (Object.keys(this.state.coinList).slice(0,100)))
     
     return <CoinGrid count={favorites && this.state.favorites && this.state.favorites.length}>
         {coinKeys ? coinKeys.map((coinKey,index)=>
